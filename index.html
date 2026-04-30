@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ms" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hind Homemade Food | Tempahan Makanan</title>
+  <meta name="description" content="Tempahan makanan homemade oleh Hind: masakan Arab/Yemen, roti, baking dan small order hingga 50 pax." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fff7eb;
+      --cream-2: #fffdf8;
+      --dark: #18110c;
+      --text: #251a13;
+      --muted: #746357;
+      --orange: #c75a16;
+      --orange-dark: #843408;
+      --gold: #f2b84b;
+      --white: #ffffff;
+      --shadow: 0 24px 70px rgba(33, 20, 12, 0.16);
+      --soft-shadow: 0 14px 40px rgba(33, 20, 12, 0.09);
+      --radius: 30px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+    body[dir="rtl"] { font-family: "Amiri", serif; }
+    img { width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    [data-lang] { display: none; }
+    html[data-current-lang="ms"] [data-lang="ms"],
+    html[data-current-lang="en"] [data-lang="en"],
+    html[data-current-lang="ar"] [data-lang="ar"] { display: inline; }
+
+    .block[data-lang] { display: none; }
+    html[data-current-lang="ms"] .block[data-lang="ms"],
+    html[data-current-lang="en"] .block[data-lang="en"],
+    html[data-current-lang="ar"] .block[data-lang="ar"] { display: block; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 250, 243, 0.9);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(199, 90, 22, 0.12);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: linear-gradient(135deg, var(--orange), var(--gold));
+      color: white;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      background: white;
+      border: 1px solid rgba(37, 26, 19, 0.1);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(33, 20, 12, 0.06);
+    }
+
+    .lang-toggle button {
+      border: 0;
+      cursor: pointer;
+      background: transparent;
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-weight: 900;
+      color: var(--muted);
+      transition: 0.2s ease;
+    }
+
+    html[data-current-lang="ms"] .lang-toggle button[data-set-lang="ms"],
+    html[data-current-lang="en"] .lang-toggle button[data-set-lang="en"],
+    html[data-current-lang="ar"] .lang-toggle button[data-set-lang="ar"] {
+      background: var(--dark);
+      color: white;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      cursor: pointer;
+      border-radius: 18px;
+      padding: 14px 20px;
+      font-weight: 900;
+      background: var(--dark);
+      color: var(--white);
+      box-shadow: var(--soft-shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn.secondary { background: white; color: var(--dark); border: 1px solid rgba(37, 26, 19, 0.12); }
+    .btn.orange { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 74px 0 94px;
+      background:
+        radial-gradient(circle at 78% 10%, rgba(242, 184, 75, 0.45), transparent 31%),
+        radial-gradient(circle at 8% 86%, rgba(199, 90, 22, 0.2), transparent 31%),
+        linear-gradient(135deg, #fff0d8, #fffdf8 58%, #f8e2c6);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(199, 90, 22, 0.16);
+      color: var(--orange-dark);
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 8px 24px rgba(33, 20, 12, 0.06);
+    }
+
+    h1 {
+      margin: 24px 0 18px;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+    }
+    body[dir="rtl"] h1 { letter-spacing: 0; line-height: 1.12; }
+
+    .lead {
+      max-width: 650px;
+      font-size: 19px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+      max-width: 620px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(199, 90, 22, 0.12);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(33, 20, 12, 0.06);
+    }
+
+    .stat-card strong { display: block; font-size: 29px; letter-spacing: -0.04em; }
+    .stat-card span { color: var(--muted); font-size: 13px; }
+
+    .hero-collage {
+      position: relative;
+      min-height: 650px;
+    }
+
+    .photo {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      background: white;
+      border: 6px solid rgba(255,255,255,0.72);
+    }
+
+    .photo img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+    .photo:hover img { transform: scale(1.06); }
+    .photo-main { width: 64%; height: 390px; right: 0; top: 26px; }
+    .photo-left { width: 48%; height: 285px; left: 0; top: 130px; }
+    .photo-bottom { width: 50%; height: 240px; right: 72px; bottom: 18px; }
+    .photo-small { width: 34%; height: 185px; left: 58px; bottom: 78px; border-radius: 28px; }
+
+    body[dir="rtl"] .photo-main { left: 0; right: auto; }
+    body[dir="rtl"] .photo-left { right: 0; left: auto; }
+    body[dir="rtl"] .photo-bottom { left: 72px; right: auto; }
+    body[dir="rtl"] .photo-small { right: 58px; left: auto; }
+
+    .floating-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.93);
+      backdrop-filter: blur(16px);
+      border-radius: 26px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .floating-card strong { color: var(--orange-dark); }
+    .floating-card p { margin: 5px 0 0; color: var(--muted); line-height: 1.65; }
+
+    section { padding: 78px 0; }
+    .section-dark { background: var(--dark); color: white; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 12px;
+      font-weight: 900;
+      margin: 0 0 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+    }
+    body[dir="rtl"] h2 { letter-spacing: 0; line-height: 1.18; }
+
+    .section-desc { color: var(--muted); max-width: 710px; line-height: 1.85; }
+    .section-dark .section-desc { color: #ded8d2; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid rgba(199, 90, 22, 0.1);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .card .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: #fff0dc;
+      color: var(--orange-dark);
+      font-size: 27px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 { margin: 0 0 12px; font-size: 22px; }
+    .card p { color: var(--muted); line-height: 1.8; margin: 0; }
+
+    .dark-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .feature {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 32px;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(37, 26, 19, 0.12);
+      background: white;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .filter-btn.active, .filter-btn:hover { background: var(--dark); color: white; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .food-card {
+      overflow: hidden;
+      background: white;
+      border-radius: 28px;
+      box-shadow: var(--soft-shadow);
+      border: 1px solid rgba(37, 26, 19, 0.06);
+    }
+
+    .food-card img {
+      height: 235px;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .food-card:hover img { transform: scale(1.07); }
+    .food-content { padding: 18px; }
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #fff0dc;
+      color: var(--orange-dark);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .food-content h3 { margin: 0 0 8px; font-size: 18px; }
+    .food-content p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
+
+    .cta-box {
+      background: linear-gradient(135deg, var(--orange), #1b120c 82%);
+      color: white;
+      border-radius: 40px;
+      padding: 48px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .order-form {
+      background: white;
+      color: var(--dark);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .order-template {
+      background: #fff8ed;
+      color: var(--muted);
+      border-radius: 20px;
+      padding: 18px;
+      line-height: 1.9;
+      font-size: 14px;
+      margin: 14px 0 18px;
+      direction: ltr;
+      font-family: "Inter", sans-serif;
+    }
+
+    footer {
+      padding: 28px 0;
+      background: #120d09;
+      color: #d6d3d1;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid, .dark-grid, .cta-box { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .section-head { display: block; }
+      .hero-collage { min-height: 590px; }
+      .nav-inner { flex-wrap: wrap; }
+      .nav-actions { width: 100%; justify-content: space-between; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 42px 0 70px; }
+      .stats, .features, .gallery { grid-template-columns: 1fr; }
+      .hero-collage { min-height: auto; display: grid; gap: 14px; }
+      .photo { position: static; width: 100% !important; height: 250px !important; border-radius: 26px; }
+      .floating-card { position: static; }
+      .cta-box { padding: 28px; border-radius: 30px; }
+      .hero-actions .btn, .nav-actions .btn { width: 100%; }
+      .lang-toggle { width: 100%; justify-content: center; }
+      h1 { font-size: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-icon">🍽️</span>
+        <span>Hind Homemade</span>
+      </a>
+      <div class="nav-actions">
+        <div class="lang-toggle" aria-label="Language selector">
+          <button data-set-lang="ms" onclick="setLang('ms')">Melayu</button>
+          <button data-set-lang="en" onclick="setLang('en')">English</button>
+          <button data-set-lang="ar" onclick="setLang('ar')">عربي</button>
+        </div>
+        <a class="btn orange" href="https://wa.me/601153050524?text=Assalamualaikum%20Hind%2C%20saya%20nak%20tanya%20tempahan%20makanan." target="_blank">
+          <span data-lang="ms">WhatsApp Hind</span>
+          <span data-lang="en">WhatsApp Hind</span>
+          <span data-lang="ar">واتساب هند</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="pill">
+          <span data-lang="ms">👩‍🍳 Masakan homemade • Arab/Yemen • Roti • Baking</span>
+          <span data-lang="en">👩‍🍳 Homemade cooking • Arabic/Yemeni • Bread • Baking</span>
+          <span data-lang="ar">👩‍🍳 طبخ منزلي • أكلات عربية ويمنية • خبز • مخبوزات</span>
+        </span>
+
+        <h1>
+          <span data-lang="ms">Tempahan makanan homemade bersama Hind.</span>
+          <span data-lang="en">Homemade food orders by Hind.</span>
+          <span data-lang="ar">طلبات طعام منزلية من هند.</span>
+        </h1>
+
+        <p class="lead block" data-lang="ms">Hind menerima tempahan makanan untuk keluarga, jamuan kecil, gathering dan majlis sehingga 50 pax. Pilihan menu termasuk masakan Arab/Yemen, roti homemade, baking dan menu lain mengikut permintaan.</p>
+        <p class="lead block" data-lang="en">Hind accepts food orders for families, small gatherings and events up to 50 pax. Menus include Arabic/Yemeni dishes, homemade bread, baked goods and custom dishes on request.</p>
+        <p class="lead block" data-lang="ar">تستقبل هند طلبات الطعام للعائلة والمناسبات الصغيرة حتى 50 شخصًا. تشمل القائمة الأكلات العربية واليمنية، الخبز المنزلي، المخبوزات، وقوائم خاصة حسب الطلب.</p>
+
+        <div class="hero-actions">
+          <a class="btn orange" href="https://wa.me/601153050524?text=Assalamualaikum%20Hind%2C%20saya%20nak%20buat%20tempahan%20makanan.%20Boleh%20saya%20tahu%20menu%20dan%20harga%3F" target="_blank">
+            <span data-lang="ms">📲 Tempah Sekarang</span>
+            <span data-lang="en">📲 Order Now</span>
+            <span data-lang="ar">📲 اطلب الآن</span>
+          </a>
+          <a class="btn secondary" href="#gallery">
+            <span data-lang="ms">Lihat Gambar Menu</span>
+            <span data-lang="en">View Food Gallery</span>
+            <span data-lang="ar">شاهد صور الطعام</span>
+          </a>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card"><strong>50</strong><span data-lang="ms">pax maksimum</span><span data-lang="en">maximum pax</span><span data-lang="ar">شخص كحد أقصى</span></div>
+          <div class="stat-card"><strong>Fresh</strong><span data-lang="ms">dibuat ikut tempahan</span><span data-lang="en">made to order</span><span data-lang="ar">يُحضّر حسب الطلب</span></div>
+          <div class="stat-card"><strong>011</strong><span>5305 0524</span></div>
+        </div>
+      </div>
+
+      <div class="hero-collage">
+        <div class="photo photo-main"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=90" alt="Premium Arabic rice dish"></div>
+        <div class="photo photo-left"><img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2a389?auto=format&fit=crop&w=1000&q=90" alt="Fresh baked bread"></div>
+        <div class="photo photo-bottom"><img src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=1000&q=90" alt="Food spread for gathering"></div>
+        <div class="photo photo-small"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=90" alt="Dessert cup"></div>
+        <div class="floating-card">
+          <strong data-lang="ms">Small order hingga 50 pax</strong>
+          <strong data-lang="en">Small orders up to 50 pax</strong>
+          <strong data-lang="ar">طلبات صغيرة حتى 50 شخصًا</strong>
+          <p class="block" data-lang="ms">Sesuai untuk keluarga, majlis kecil, office potluck dan gathering.</p>
+          <p class="block" data-lang="en">Perfect for families, small events, office potlucks and gatherings.</p>
+          <p class="block" data-lang="ar">مناسب للعائلة والمناسبات الصغيرة واللقاءات.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="menu">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Menu</p>
+          <h2>
+            <span data-lang="ms">Masakan Arab, roti dan baking dari dapur Hind.</span>
+            <span data-lang="en">Arabic dishes, bread and baking from Hind’s kitchen.</span>
+            <span data-lang="ar">أكلات عربية، خبز ومخبوزات من مطبخ هند.</span>
+          </h2>
+        </div>
+        <p class="section-desc block" data-lang="ms">Menu boleh disesuaikan mengikut bajet, bilangan pax dan jenis majlis. Harga bergantung pada menu dan kuantiti.</p>
+        <p class="section-desc block" data-lang="en">Menus can be customised based on budget, number of pax and event type. Pricing depends on menu and quantity.</p>
+        <p class="section-desc block" data-lang="ar">يمكن تخصيص القائمة حسب الميزانية وعدد الأشخاص ونوع المناسبة. السعر يعتمد على القائمة والكمية.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🍛</div>
+          <h3><span data-lang="ms">Masakan Arab & Yemen</span><span data-lang="en">Arabic & Yemeni Food</span><span data-lang="ar">أكلات عربية ويمنية</span></h3>
+          <p class="block" data-lang="ms">Nasi Arab, mandi, kabsa, lauk berempah, sambosa dan hidangan Timur Tengah.</p>
+          <p class="block" data-lang="en">Arabic rice, mandi, kabsa, spiced mains, sambosa and Middle Eastern dishes.</p>
+          <p class="block" data-lang="ar">أرز عربي، مندي، كبسة، أطباق متبلة، سمبوسة وأكلات شرق أوسطية.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🥖</div>
+          <h3><span data-lang="ms">Roti Homemade</span><span data-lang="en">Homemade Bread</span><span data-lang="ar">خبز منزلي</span></h3>
+          <p class="block" data-lang="ms">Roti lembut, bun, flatbread, dinner rolls dan pilihan roti lain mengikut tempahan.</p>
+          <p class="block" data-lang="en">Soft bread, buns, flatbread, dinner rolls and other bread options made to order.</p>
+          <p class="block" data-lang="ar">خبز طري، خبز مسطح، رولز وخيارات أخرى حسب الطلب.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🧁</div>
+          <h3><span data-lang="ms">Baking & Dessert</span><span data-lang="en">Baking & Desserts</span><span data-lang="ar">مخبوزات وحلويات</span></h3>
+          <p class="block" data-lang="ms">Kek, cupcake, dessert box, cinnamon roll dan manisan untuk keluarga atau hadiah.</p>
+          <p class="block" data-lang="en">Cakes, cupcakes, dessert boxes, cinnamon rolls and sweet treats for family or gifts.</p>
+          <p class="block" data-lang="ar">كيك، كب كيك، علب حلويات، سينامون رول وحلويات للعائلة أو الهدايا.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container dark-grid">
+      <div>
+        <p class="eyebrow">Why Hind</p>
+        <h2>
+          <span data-lang="ms">Homemade, fleksibel dan sesuai untuk majlis kecil.</span>
+          <span data-lang="en">Homemade, flexible and perfect for small events.</span>
+          <span data-lang="ar">طعام منزلي، مرن ومناسب للمناسبات الصغيرة.</span>
+        </h2>
+        <p class="section-desc block" data-lang="ms">Bincang dahulu tentang menu, kuantiti, bajet dan masa pickup/delivery sebelum tempahan disahkan.</p>
+        <p class="section-desc block" data-lang="en">Discuss the menu, quantity, budget and pickup/delivery time before confirming your order.</p>
+        <p class="section-desc block" data-lang="ar">يمكن الاتفاق على القائمة، الكمية، الميزانية ووقت الاستلام أو التوصيل قبل تأكيد الطلب.</p>
+      </div>
+      <div class="features">
+        <div class="feature"><span data-lang="ms">✅ Small order hingga 50 pax</span><span data-lang="en">✅ Small orders up to 50 pax</span><span data-lang="ar">✅ طلبات حتى 50 شخصًا</span></div>
+        <div class="feature"><span data-lang="ms">✅ Harga ikut menu dan kuantiti</span><span data-lang="en">✅ Price based on menu and quantity</span><span data-lang="ar">✅ السعر حسب القائمة والكمية</span></div>
+        <div class="feature"><span data-lang="ms">✅ Masakan fresh homemade</span><span data-lang="en">✅ Fresh homemade food</span><span data-lang="ar">✅ طعام منزلي طازج</span></div>
+        <div class="feature"><span data-lang="ms">✅ Menu Arab/Yemen tersedia</span><span data-lang="en">✅ Arabic/Yemeni menu available</span><span data-lang="ar">✅ قائمة عربية ويمنية متوفرة</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Gallery</p>
+          <h2>
+            <span data-lang="ms">Gambar makanan yang lebih menarik untuk inspirasi tempahan.</span>
+            <span data-lang="en">Beautiful food gallery for order inspiration.</span>
+            <span data-lang="ar">معرض صور جميل لإلهام الطلبات.</span>
+          </h2>
+        </div>
+        <p class="section-desc block" data-lang="ms">Gambar ini sebagai inspirasi menu. Menu sebenar boleh disesuaikan mengikut tempahan.</p>
+        <p class="section-desc block" data-lang="en">These photos are menu inspiration. Actual menus can be customised for your order.</p>
+        <p class="section-desc block" data-lang="ar">هذه الصور للإلهام فقط. يمكن تخصيص القائمة حسب الطلب.</p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterGallery('all', this)"><span data-lang="ms">Semua</span><span data-lang="en">All</span><span data-lang="ar">الكل</span></button>
+        <button class="filter-btn" onclick="filterGallery('arab', this)"><span data-lang="ms">Arab/Yemen</span><span data-lang="en">Arabic/Yemeni</span><span data-lang="ar">عربي/يمني</span></button>
+        <button class="filter-btn" onclick="filterGallery('bread', this)"><span data-lang="ms">Roti</span><span data-lang="en">Bread</span><span data-lang="ar">خبز</span></button>
+        <button class="filter-btn" onclick="filterGallery('baking', this)"><span data-lang="ms">Baking</span><span data-lang="en">Baking</span><span data-lang="ar">مخبوزات</span></button>
+        <button class="filter-btn" onclick="filterGallery('event', this)"><span data-lang="ms">Majlis</span><span data-lang="en">Events</span><span data-lang="ar">مناسبات</span></button>
+      </div>
+
+      <div class="gallery">
+        <article class="food-card" data-category="arab"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1000&q=90" alt="Arabic rice platter"><div class="food-content"><span class="tag">Arab/Yemen</span><h3><span data-lang="ms">Nasi Arab Premium</span><span data-lang="en">Premium Arabic Rice</span><span data-lang="ar">أرز عربي فاخر</span></h3><p><span data-lang="ms">Hidangan nasi berempah untuk majlis kecil.</span><span data-lang="en">Spiced rice dish for small events.</span><span data-lang="ar">طبق أرز متبل للمناسبات الصغيرة.</span></p></div></article>
+        <article class="food-card" data-category="arab"><img src="https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=1000&q=90" alt="Middle eastern spread"><div class="food-content"><span class="tag">Arab/Yemen</span><h3><span data-lang="ms">Set Timur Tengah</span><span data-lang="en">Middle Eastern Spread</span><span data-lang="ar">سفرة شرق أوسطية</span></h3><p><span data-lang="ms">Cantik untuk sharing platter.</span><span data-lang="en">Great for sharing platters.</span><span data-lang="ar">مناسب للمشاركة.</span></p></div></article>
+        <article class="food-card" data-category="arab"><img src="https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?auto=format&fit=crop&w=1000&q=90" alt="Spiced chicken and rice"><div class="food-content"><span class="tag">Arab/Yemen</span><h3><span data-lang="ms">Ayam Berempah</span><span data-lang="en">Spiced Chicken</span><span data-lang="ar">دجاج متبل</span></h3><p><span data-lang="ms">Sesuai dengan nasi Arab.</span><span data-lang="en">Perfect with Arabic rice.</span><span data-lang="ar">مناسب مع الأرز العربي.</span></p></div></article>
+        <article class="food-card" data-category="arab"><img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=90" alt="Samosa"><div class="food-content"><span class="tag">Arab/Yemen</span><h3><span data-lang="ms">Sambosa Rangup</span><span data-lang="en">Crispy Sambosa</span><span data-lang="ar">سمبوسة مقرمشة</span></h3><p><span data-lang="ms">Snack majlis yang mudah dimakan.</span><span data-lang="en">Easy event snack.</span><span data-lang="ar">وجبة خفيفة للمناسبات.</span></p></div></article>
+        <article class="food-card" data-category="arab"><img src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?auto=format&fit=crop&w=1000&q=90" alt="Grilled meat platter"><div class="food-content"><span class="tag">Arab/Yemen</span><h3><span data-lang="ms">Lauk Grill Berempah</span><span data-lang="en">Spiced Grill</span><span data-lang="ar">مشاوي متبلة</span></h3><p><span data-lang="ms">Pilihan lauk untuk set nasi.</span><span data-lang="en">Main dish option for rice sets.</span><span data-lang="ar">خيار رئيسي مع الأرز.</span></p></div></article>
+        <article class="food-card" data-category="bread"><img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2a389?auto=format&fit=crop&w=1000&q=90" alt="Artisan bread"><div class="food-content"><span class="tag">Roti</span><h3><span data-lang="ms">Roti Artisan</span><span data-lang="en">Artisan Bread</span><span data-lang="ar">خبز منزلي</span></h3><p><span data-lang="ms">Roti segar dan cantik untuk hidangan.</span><span data-lang="en">Fresh bread for serving.</span><span data-lang="ar">خبز طازج للتقديم.</span></p></div></article>
+        <article class="food-card" data-category="bread"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=90" alt="Homemade bread loaf"><div class="food-content"><span class="tag">Roti</span><h3><span data-lang="ms">Loaf Homemade</span><span data-lang="en">Homemade Loaf</span><span data-lang="ar">رغيف منزلي</span></h3><p><span data-lang="ms">Lembut dan sesuai untuk keluarga.</span><span data-lang="en">Soft and family-friendly.</span><span data-lang="ar">طري ومناسب للعائلة.</span></p></div></article>
+        <article class="food-card" data-category="bread"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=1000&q=90" alt="Dinner rolls"><div class="food-content"><span class="tag">Roti</span><h3><span data-lang="ms">Dinner Rolls</span><span data-lang="en">Dinner Rolls</span><span data-lang="ar">رولز طرية</span></h3><p><span data-lang="ms">Sesuai untuk makan ramai.</span><span data-lang="en">Great for group meals.</span><span data-lang="ar">مناسبة للوجبات الجماعية.</span></p></div></article>
+        <article class="food-card" data-category="bread"><img src="https://images.unsplash.com/photo-1600626333392-5715a18c6a33?auto=format&fit=crop&w=1000&q=90" alt="Focaccia bread"><div class="food-content"><span class="tag">Roti</span><h3><span data-lang="ms">Focaccia Herbs</span><span data-lang="en">Herb Focaccia</span><span data-lang="ar">خبز بالأعشاب</span></h3><p><span data-lang="ms">Roti herba yang nampak premium.</span><span data-lang="en">Premium-looking herb bread.</span><span data-lang="ar">خبز أعشاب فاخر.</span></p></div></article>
+        <article class="food-card" data-category="baking"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1000&q=90" alt="Dessert cups"><div class="food-content"><span class="tag">Baking</span><h3><span data-lang="ms">Dessert Cup</span><span data-lang="en">Dessert Cups</span><span data-lang="ar">كاسات حلى</span></h3><p><span data-lang="ms">Cantik untuk hadiah dan majlis.</span><span data-lang="en">Beautiful for gifts and events.</span><span data-lang="ar">جميلة للهدايا والمناسبات.</span></p></div></article>
+        <article class="food-card" data-category="baking"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=90" alt="Cake"><div class="food-content"><span class="tag">Baking</span><h3><span data-lang="ms">Kek Homemade</span><span data-lang="en">Homemade Cake</span><span data-lang="ar">كيك منزلي</span></h3><p><span data-lang="ms">Simple, premium dan sedap.</span><span data-lang="en">Simple, premium and delicious.</span><span data-lang="ar">بسيط وفاخر ولذيذ.</span></p></div></article>
+        <article class="food-card" data-category="baking"><img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=1000&q=90" alt="Cupcakes"><div class="food-content"><span class="tag">Baking</span><h3><span data-lang="ms">Cupcake Majlis</span><span data-lang="en">Event Cupcakes</span><span data-lang="ar">كب كيك للمناسبات</span></h3><p><span data-lang="ms">Comel untuk birthday dan gathering.</span><span data-lang="en">Cute for birthdays and gatherings.</span><span data-lang="ar">مناسب لأعياد الميلاد واللقاءات.</span></p></div></article>
+        <article class="food-card" data-category="baking"><img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=1000&q=90" alt="Cinnamon rolls"><div class="food-content"><span class="tag">Baking</span><h3><span data-lang="ms">Cinnamon Roll</span><span data-lang="en">Cinnamon Rolls</span><span data-lang="ar">سينامون رول</span></h3><p><span data-lang="ms">Manis, lembut dan wangi.</span><span data-lang="en">Sweet, soft and fragrant.</span><span data-lang="ar">حلوة وطرية ورائحتها جميلة.</span></p></div></article>
+        <article class="food-card" data-category="event"><img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1000&q=90" alt="Catering setup"><div class="food-content"><span class="tag">Majlis</span><h3><span data-lang="ms">Small Event Catering</span><span data-lang="en">Small Event Catering</span><span data-lang="ar">طلبات مناسبات صغيرة</span></h3><p><span data-lang="ms">Untuk doa selamat, office potluck dan family day.</span><span data-lang="en">For family events, potlucks and gatherings.</span><span data-lang="ar">للمناسبات العائلية واللقاءات.</span></p></div></article>
+        <article class="food-card" data-category="event"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1000&q=90" alt="Food table"><div class="food-content"><span class="tag">Majlis</span><h3><span data-lang="ms">Hidangan Keluarga</span><span data-lang="en">Family Feast</span><span data-lang="ar">وليمة عائلية</span></h3><p><span data-lang="ms">Sesuai untuk makan ramai.</span><span data-lang="en">Perfect for group meals.</span><span data-lang="ar">مناسبة للوجبات الجماعية.</span></p></div></article>
+        <article class="food-card" data-category="event"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1000&q=90" alt="Fresh food spread"><div class="food-content"><span class="tag">Majlis</span><h3><span data-lang="ms">Set Sharing</span><span data-lang="en">Sharing Set</span><span data-lang="ar">مجموعة للمشاركة</span></h3><p><span data-lang="ms">Menu fleksibel ikut bajet.</span><span data-lang="en">Flexible menu based on budget.</span><span data-lang="ar">قائمة مرنة حسب الميزانية.</span></p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <p class="eyebrow" style="color:#ffd18f">Order</p>
+          <h2>
+            <span data-lang="ms">Nak tempah makanan dengan Hind?</span>
+            <span data-lang="en">Want to order from Hind?</span>
+            <span data-lang="ar">هل تريد الطلب من هند؟</span>
+          </h2>
+          <p class="block" data-lang="ms" style="line-height:1.8;color:#fff3e1">Hantar mesej dengan tarikh, jumlah pax, menu pilihan dan bajet anggaran. Hind akan cadangkan menu dan harga yang sesuai.</p>
+          <p class="block" data-lang="en" style="line-height:1.8;color:#fff3e1">Send your date, number of pax, preferred menu and estimated budget. Hind will suggest suitable menu options and pricing.</p>
+          <p class="block" data-lang="ar" style="line-height:1.9;color:#fff3e1">أرسل التاريخ، عدد الأشخاص، القائمة المطلوبة والميزانية التقريبية. ستقترح هند قائمة وسعرًا مناسبًا.</p>
+        </div>
+
+        <div class="order-form">
+          <h3><span data-lang="ms">Format mesej tempahan</span><span data-lang="en">Order message format</span><span data-lang="ar">صيغة رسالة الطلب</span></h3>
+          <div class="order-template">
+            Name / Nama:<br>
+            Date / Tarikh:<br>
+            Pax / Jumlah pax:<br>
+            Preferred menu / Menu pilihan:<br>
+            Budget / Bajet anggaran:<br>
+            Pickup or delivery:<br>
+          </div>
+          <a class="btn orange" style="width:100%" href="https://wa.me/601153050524?text=Assalamualaikum%20Hind%2C%20saya%20nak%20buat%20tempahan.%0A%0ANama%3A%0ATarikh%3A%0AJumlah%20pax%3A%0AMenu%20pilihan%3A%0ABajet%20anggaran%3A%0APickup%20atau%20delivery%3A" target="_blank">
+            <span data-lang="ms">📲 WhatsApp Hind</span>
+            <span data-lang="en">📲 WhatsApp Hind</span>
+            <span data-lang="ar">📲 واتساب هند</span>
+          </a>
+          <p style="font-size:13px;color:#7c6f65;margin-top:12px">011-5305 0524</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span data-lang="ms">© 2026 Hind Homemade Food. Dibuat untuk keluarga, kawan dan majlis kecil.</span>
+      <span data-lang="en">© 2026 Hind Homemade Food. Made for families, friends and small events.</span>
+      <span data-lang="ar">© 2026 هند للأكل المنزلي. للعائلة والأصدقاء والمناسبات الصغيرة.</span>
+    </div>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.setAttribute('data-current-lang', lang);
+      localStorage.setItem('hind_lang', lang);
+      document.documentElement.lang = lang;
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    }
+
+    function filterGallery(category, button) {
+      const cards = document.querySelectorAll('.food-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      cards.forEach(card => {
+        const show = category === 'all' || card.dataset.category === category;
+        card.style.display = show ? 'block' : 'none';
+      });
+    }
+
+    setLang(localStorage.getItem('hind_lang') || 'ms');
+  </script>
+</body>
+</html>
