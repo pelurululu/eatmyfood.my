@@ -449,6 +449,11 @@
     }
 
     /* ══════════════════════════════════════
+       BASE OVERFLOW FIX — all sizes
+    ══════════════════════════════════════ */
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    /* ══════════════════════════════════════
        TABLET — 980px
     ══════════════════════════════════════ */
     @media (max-width: 980px) {
@@ -468,196 +473,135 @@
        MOBILE — 600px
     ══════════════════════════════════════ */
     @media (max-width: 600px) {
-      /* Container */
-      .container { width: calc(100% - 28px); }
+
+      /* ─ Hard stop on overflow ─ */
+      .container { width: calc(100% - 32px); }
+      section, .hero, .nav { width: 100%; }
 
       /* ─ Nav ─ */
-      .nav-inner {
-        flex-wrap: nowrap;
-        padding: 10px 0;
-        gap: 8px;
-      }
-      .nav-actions {
-        width: auto;
-        gap: 8px;
-        flex-shrink: 0;
-      }
-      .brand { font-size: 16px; gap: 8px; }
-      .brand-icon { width: 36px; height: 36px; border-radius: 12px; font-size: 17px; }
-
-      /* Lang toggle — compact 3 buttons in one line */
-      .lang-toggle {
-        padding: 4px;
-        gap: 2px;
-      }
-      .lang-toggle button {
-        padding: 7px 9px;
-        font-size: 11px;
-      }
-
-      /* WhatsApp btn in nav — icon only on very small screens */
-      .nav-actions > a.btn {
-        padding: 10px 14px;
-        font-size: 13px;
-        border-radius: 14px;
-      }
+      .nav-inner { flex-wrap: nowrap; padding: 10px 0; gap: 8px; }
+      .nav-actions { width: auto; gap: 8px; flex-shrink: 0; }
+      .brand { font-size: 15px; gap: 8px; flex-shrink: 1; min-width: 0; }
+      .brand span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; max-width: 110px; }
+      .brand-icon { width: 34px; height: 34px; min-width: 34px; border-radius: 11px; font-size: 16px; }
+      .lang-toggle { padding: 4px; gap: 2px; }
+      .lang-toggle button { padding: 6px 8px; font-size: 11px; }
+      .nav-actions > a.btn { padding: 9px 13px; font-size: 13px; border-radius: 13px; flex-shrink: 0; }
 
       /* ─ Hero ─ */
-      .hero { padding: 32px 0 48px; }
-      .hero-grid { gap: 24px; }
+      .hero { padding: 30px 0 40px; overflow: hidden; }
+      .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+      .pill { font-size: 11px; padding: 8px 12px; max-width: 100%; box-sizing: border-box; }
+      h1 { font-size: 33px; letter-spacing: -0.03em; line-height: 1.08; margin: 14px 0 12px; }
+      body[dir="rtl"] h1 { font-size: 29px; letter-spacing: 0; }
+      .lead { font-size: 15px; line-height: 1.7; margin-bottom: 18px; }
 
-      .pill { font-size: 11px; padding: 8px 12px; gap: 6px; }
+      .hero-actions { flex-direction: column; gap: 10px; }
+      .hero-actions .btn { width: 100%; padding: 15px; border-radius: 16px; font-size: 15px; justify-content: center; box-sizing: border-box; }
 
-      h1 {
-        font-size: 36px;
-        letter-spacing: -0.04em;
-        line-height: 1.05;
-        margin: 16px 0 14px;
-      }
-      body[dir="rtl"] h1 { font-size: 32px; }
+      .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 18px; max-width: 100%; }
+      .stat-card { padding: 11px 8px; border-radius: 16px; }
+      .stat-card strong { font-size: 18px; }
+      .stat-card span { font-size: 10px; word-break: break-word; }
 
-      .lead { font-size: 15px; line-height: 1.75; margin-bottom: 20px; }
-
-      /* Hero actions — stack vertically */
-      .hero-actions {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .hero-actions .btn {
-        width: 100%;
-        padding: 15px 20px;
-        border-radius: 16px;
-        font-size: 15px;
-        justify-content: center;
-      }
-
-      /* Stats — 3 cols stay but smaller */
-      .stats {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-top: 20px;
-        max-width: 100%;
-      }
-      .stat-card { padding: 12px 10px; border-radius: 18px; }
-      .stat-card strong { font-size: 20px; }
-      .stat-card span { font-size: 11px; }
-
-      /* Hero collage — stacked grid */
+      /* ─ Hero collage — completely reset absolute positioning ─ */
       .hero-collage {
-        min-height: auto;
-        display: grid;
+        position: static !important;
+        width: 100% !important;
+        min-height: unset !important;
+        display: grid !important;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
         gap: 10px;
-        position: static;
+        overflow: hidden;
       }
       .photo {
         position: static !important;
         width: 100% !important;
-        border-radius: 20px !important;
-        border-width: 4px;
+        height: 148px !important;
+        border-radius: 18px !important;
+        border-width: 3px;
+        left: auto !important; right: auto !important;
+        top: auto !important; bottom: auto !important;
+        transform: none !important;
       }
-      .photo-main { height: 190px !important; grid-column: 1 / -1; }
-      .photo-left { height: 150px !important; }
-      .photo-bottom { height: 150px !important; }
-      .photo-small { display: none; } /* hide 4th for cleaner look */
-
+      .photo-main { height: 182px !important; grid-column: 1 / -1; }
+      .photo-small { display: none !important; }
       .floating-card {
-        position: static;
-        border-radius: 20px;
-        padding: 14px 16px;
+        position: static !important;
+        left: auto; right: auto; bottom: auto;
         grid-column: 1 / -1;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 18px;
+        padding: 13px 15px;
       }
-      .floating-card p { font-size: 13px; }
+      .floating-card strong { font-size: 14px; }
+      .floating-card p { font-size: 13px; margin-top: 4px; }
 
       /* ─ Sections ─ */
-      section { padding: 48px 0; }
-
-      h2 {
-        font-size: 26px;
-        letter-spacing: -0.03em;
-        line-height: 1.15;
-      }
-      body[dir="rtl"] h2 { font-size: 24px; }
-
-      .section-head { margin-bottom: 24px; }
-      .section-desc { font-size: 14px; line-height: 1.75; margin-top: 12px; }
+      section { padding: 42px 0; }
+      h2 { font-size: 24px; letter-spacing: -0.02em; line-height: 1.15; }
+      body[dir="rtl"] h2 { font-size: 22px; letter-spacing: 0; }
+      .section-head { display: block; margin-bottom: 20px; }
+      .section-desc { font-size: 14px; line-height: 1.75; margin-top: 10px; }
       .eyebrow { font-size: 11px; margin-bottom: 8px; }
 
-      /* ─ Menu cards — single column ─ */
-      .cards { grid-template-columns: 1fr; gap: 14px; }
-      .card { padding: 22px; border-radius: 24px; }
-      .card .icon { width: 48px; height: 48px; font-size: 22px; margin-bottom: 14px; border-radius: 16px; }
-      .card h3 { font-size: 18px; }
+      /* ─ Menu cards ─ */
+      .cards { grid-template-columns: 1fr; gap: 12px; }
+      .card { padding: 20px; border-radius: 22px; }
+      .card .icon { width: 46px; height: 46px; font-size: 21px; margin-bottom: 12px; border-radius: 15px; }
+      .card h3 { font-size: 17px; margin-bottom: 8px; }
+      .card p { font-size: 14px; }
 
-      /* ─ Why / Features — 2 col ─ */
+      /* ─ Features ─ */
       .features { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .feature { padding: 14px; font-size: 13px; border-radius: 18px; }
+      .feature { padding: 13px 12px; font-size: 13px; border-radius: 16px; }
 
-      /* ─ Gallery filters ─ */
+      /* ─ Gallery filters — scrollable row, no wrap ─ */
       .filters {
-        gap: 8px;
-        margin: 18px 0 22px;
-        -webkit-overflow-scrolling: touch;
-        overflow-x: auto;
+        display: flex;
         flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 8px;
+        margin: 16px 0 20px;
         padding-bottom: 4px;
       }
-      .filter-btn {
-        flex-shrink: 0;
-        padding: 9px 14px;
-        font-size: 13px;
-      }
+      .filters::-webkit-scrollbar { display: none; }
+      .filter-btn { flex-shrink: 0; padding: 9px 14px; font-size: 13px; }
 
-      /* ─ Gallery — 2 col ─ */
-      .gallery { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .food-card { border-radius: 20px; }
-      .food-card img { height: 160px; }
+      /* ─ Gallery ─ */
+      .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .food-card { border-radius: 18px; }
+      .food-card img { height: 148px; }
       .food-content { padding: 12px; }
-      .food-content h3 { font-size: 14px; margin-bottom: 4px; }
+      .food-content h3 { font-size: 13px; margin-bottom: 4px; }
       .food-content p { font-size: 12px; line-height: 1.5; }
       .tag { font-size: 10px; padding: 4px 8px; margin-bottom: 6px; }
 
-      /* ─ CTA / Order ─ */
-      .cta-box {
-        padding: 24px 20px;
-        border-radius: 28px;
-        gap: 20px;
-        grid-template-columns: 1fr;
-      }
-      .cta-box h2 { font-size: 24px; }
+      /* ─ CTA ─ */
+      .cta-box { grid-template-columns: 1fr; padding: 22px 18px; border-radius: 24px; gap: 18px; }
+      .cta-box h2 { font-size: 22px; }
+      .order-form { padding: 18px; border-radius: 20px; }
+      .order-form h3 { font-size: 15px; margin: 0 0 4px; }
+      .order-template { font-size: 13px; padding: 13px; border-radius: 14px; line-height: 2; margin: 10px 0 14px; }
+      .order-form .btn { width: 100%; padding: 14px; border-radius: 15px; font-size: 15px; box-sizing: border-box; }
+      .order-form > p { font-size: 12px; margin-top: 10px; text-align: center; }
 
-      .order-form { padding: 20px; border-radius: 22px; }
-      .order-form h3 { font-size: 16px; margin-bottom: 4px; }
-      .order-template {
-        font-size: 13px;
-        padding: 14px;
-        border-radius: 16px;
-        line-height: 2;
-        margin: 10px 0 14px;
-      }
-      .order-form .btn {
-        width: 100%;
-        padding: 15px;
-        border-radius: 16px;
-        font-size: 15px;
-      }
-      .order-form p { font-size: 12px; margin-top: 10px; }
-
-      /* Footer */
+      /* ─ Footer ─ */
       footer { padding: 20px 0; font-size: 12px; line-height: 1.7; }
     }
 
     /* ── Extra small — 380px ── */
     @media (max-width: 380px) {
-      .lang-toggle button { padding: 6px 7px; font-size: 10px; }
-      .nav-actions > a.btn { padding: 9px 11px; font-size: 12px; }
-      .brand { font-size: 14px; }
-      h1 { font-size: 30px; }
-      .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .stat-card strong { font-size: 17px; }
-      .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .food-card img { height: 130px; }
+      .lang-toggle button { padding: 5px 7px; font-size: 10px; }
+      .nav-actions > a.btn { padding: 8px 10px; font-size: 12px; }
+      .brand { font-size: 13px; }
+      .brand span:last-child { max-width: 85px; }
+      h1 { font-size: 28px; }
+      .stat-card strong { font-size: 16px; }
+      .food-card img { height: 124px; }
     }
   </style>
 </head>
