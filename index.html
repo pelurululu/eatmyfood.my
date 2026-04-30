@@ -51,6 +51,7 @@
     html[data-current-lang="en"] .block[data-lang="en"],
     html[data-current-lang="ar"] .block[data-lang="ar"] { display: block; }
 
+    /* ── NAV ── */
     .nav {
       position: sticky;
       top: 0;
@@ -64,41 +65,43 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
+      gap: 12px;
+      padding: 12px 0;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-weight: 900;
       letter-spacing: -0.04em;
-      font-size: 20px;
+      font-size: 18px;
       white-space: nowrap;
     }
 
     .brand-icon {
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
       display: grid;
       place-items: center;
-      border-radius: 17px;
+      border-radius: 15px;
       background: linear-gradient(135deg, var(--orange), var(--gold));
       color: white;
       box-shadow: var(--soft-shadow);
+      font-size: 20px;
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .lang-toggle {
       display: flex;
-      gap: 6px;
-      padding: 6px;
+      gap: 4px;
+      padding: 5px;
       background: white;
       border: 1px solid rgba(37, 26, 19, 0.1);
       border-radius: 999px;
@@ -110,8 +113,9 @@
       cursor: pointer;
       background: transparent;
       border-radius: 999px;
-      padding: 9px 13px;
+      padding: 8px 11px;
       font-weight: 900;
+      font-size: 13px;
       color: var(--muted);
       transition: 0.2s ease;
     }
@@ -127,12 +131,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       border: 0;
       cursor: pointer;
-      border-radius: 18px;
-      padding: 14px 20px;
+      border-radius: 16px;
+      padding: 13px 18px;
       font-weight: 900;
+      font-size: 15px;
       background: var(--dark);
       color: var(--white);
       box-shadow: var(--soft-shadow);
@@ -144,6 +149,7 @@
     .btn.secondary { background: white; color: var(--dark); border: 1px solid rgba(37, 26, 19, 0.12); }
     .btn.orange { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
 
+    /* ── HERO ── */
     .hero {
       position: relative;
       overflow: hidden;
@@ -258,6 +264,7 @@
     .floating-card strong { color: var(--orange-dark); }
     .floating-card p { margin: 5px 0 0; color: var(--muted); line-height: 1.65; }
 
+    /* ── SECTIONS ── */
     section { padding: 78px 0; }
     .section-dark { background: var(--dark); color: white; }
 
@@ -289,6 +296,7 @@
     .section-desc { color: var(--muted); max-width: 710px; line-height: 1.85; }
     .section-dark .section-desc { color: #ded8d2; }
 
+    /* ── MENU CARDS ── */
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -318,6 +326,7 @@
     .card h3 { margin: 0 0 12px; font-size: 22px; }
     .card p { color: var(--muted); line-height: 1.8; margin: 0; }
 
+    /* ── WHY SECTION ── */
     .dark-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -340,6 +349,7 @@
       font-weight: 700;
     }
 
+    /* ── GALLERY ── */
     .filters {
       display: flex;
       flex-wrap: wrap;
@@ -355,6 +365,8 @@
       padding: 11px 16px;
       cursor: pointer;
       font-weight: 900;
+      font-size: 14px;
+      transition: 0.2s ease;
     }
 
     .filter-btn.active, .filter-btn:hover { background: var(--dark); color: white; }
@@ -394,6 +406,7 @@
     .food-content h3 { margin: 0 0 8px; font-size: 18px; }
     .food-content p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
 
+    /* ── ORDER CTA ── */
     .cta-box {
       background: linear-gradient(135deg, var(--orange), #1b120c 82%);
       color: white;
@@ -435,26 +448,216 @@
       font-size: 14px;
     }
 
+    /* ══════════════════════════════════════
+       TABLET — 980px
+    ══════════════════════════════════════ */
     @media (max-width: 980px) {
-      .hero-grid, .dark-grid, .cta-box { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .dark-grid { grid-template-columns: 1fr; gap: 28px; }
+      .cta-box { grid-template-columns: 1fr; gap: 24px; padding: 36px; }
+      .cards { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .gallery { grid-template-columns: repeat(3, 1fr); gap: 14px; }
       .section-head { display: block; }
-      .hero-collage { min-height: 590px; }
-      .nav-inner { flex-wrap: wrap; }
+      .hero-collage { min-height: 520px; }
+      .nav-inner { flex-wrap: wrap; gap: 10px; }
       .nav-actions { width: 100%; justify-content: space-between; }
+      .stats { max-width: 100%; }
     }
 
+    /* ══════════════════════════════════════
+       MOBILE — 600px
+    ══════════════════════════════════════ */
     @media (max-width: 600px) {
-      .hero { padding: 42px 0 70px; }
-      .stats, .features, .gallery { grid-template-columns: 1fr; }
-      .hero-collage { min-height: auto; display: grid; gap: 14px; }
-      .photo { position: static; width: 100% !important; height: 250px !important; border-radius: 26px; }
-      .floating-card { position: static; }
-      .cta-box { padding: 28px; border-radius: 30px; }
-      .hero-actions .btn, .nav-actions .btn { width: 100%; }
-      .lang-toggle { width: 100%; justify-content: center; }
-      h1 { font-size: 42px; }
+      /* Container */
+      .container { width: calc(100% - 28px); }
+
+      /* ─ Nav ─ */
+      .nav-inner {
+        flex-wrap: nowrap;
+        padding: 10px 0;
+        gap: 8px;
+      }
+      .nav-actions {
+        width: auto;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      .brand { font-size: 16px; gap: 8px; }
+      .brand-icon { width: 36px; height: 36px; border-radius: 12px; font-size: 17px; }
+
+      /* Lang toggle — compact 3 buttons in one line */
+      .lang-toggle {
+        padding: 4px;
+        gap: 2px;
+      }
+      .lang-toggle button {
+        padding: 7px 9px;
+        font-size: 11px;
+      }
+
+      /* WhatsApp btn in nav — icon only on very small screens */
+      .nav-actions > a.btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        border-radius: 14px;
+      }
+
+      /* ─ Hero ─ */
+      .hero { padding: 32px 0 48px; }
+      .hero-grid { gap: 24px; }
+
+      .pill { font-size: 11px; padding: 8px 12px; gap: 6px; }
+
+      h1 {
+        font-size: 36px;
+        letter-spacing: -0.04em;
+        line-height: 1.05;
+        margin: 16px 0 14px;
+      }
+      body[dir="rtl"] h1 { font-size: 32px; }
+
+      .lead { font-size: 15px; line-height: 1.75; margin-bottom: 20px; }
+
+      /* Hero actions — stack vertically */
+      .hero-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero-actions .btn {
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 16px;
+        font-size: 15px;
+        justify-content: center;
+      }
+
+      /* Stats — 3 cols stay but smaller */
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 20px;
+        max-width: 100%;
+      }
+      .stat-card { padding: 12px 10px; border-radius: 18px; }
+      .stat-card strong { font-size: 20px; }
+      .stat-card span { font-size: 11px; }
+
+      /* Hero collage — stacked grid */
+      .hero-collage {
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+        position: static;
+      }
+      .photo {
+        position: static !important;
+        width: 100% !important;
+        border-radius: 20px !important;
+        border-width: 4px;
+      }
+      .photo-main { height: 190px !important; grid-column: 1 / -1; }
+      .photo-left { height: 150px !important; }
+      .photo-bottom { height: 150px !important; }
+      .photo-small { display: none; } /* hide 4th for cleaner look */
+
+      .floating-card {
+        position: static;
+        border-radius: 20px;
+        padding: 14px 16px;
+        grid-column: 1 / -1;
+      }
+      .floating-card p { font-size: 13px; }
+
+      /* ─ Sections ─ */
+      section { padding: 48px 0; }
+
+      h2 {
+        font-size: 26px;
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+      }
+      body[dir="rtl"] h2 { font-size: 24px; }
+
+      .section-head { margin-bottom: 24px; }
+      .section-desc { font-size: 14px; line-height: 1.75; margin-top: 12px; }
+      .eyebrow { font-size: 11px; margin-bottom: 8px; }
+
+      /* ─ Menu cards — single column ─ */
+      .cards { grid-template-columns: 1fr; gap: 14px; }
+      .card { padding: 22px; border-radius: 24px; }
+      .card .icon { width: 48px; height: 48px; font-size: 22px; margin-bottom: 14px; border-radius: 16px; }
+      .card h3 { font-size: 18px; }
+
+      /* ─ Why / Features — 2 col ─ */
+      .features { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .feature { padding: 14px; font-size: 13px; border-radius: 18px; }
+
+      /* ─ Gallery filters ─ */
+      .filters {
+        gap: 8px;
+        margin: 18px 0 22px;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+      .filter-btn {
+        flex-shrink: 0;
+        padding: 9px 14px;
+        font-size: 13px;
+      }
+
+      /* ─ Gallery — 2 col ─ */
+      .gallery { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .food-card { border-radius: 20px; }
+      .food-card img { height: 160px; }
+      .food-content { padding: 12px; }
+      .food-content h3 { font-size: 14px; margin-bottom: 4px; }
+      .food-content p { font-size: 12px; line-height: 1.5; }
+      .tag { font-size: 10px; padding: 4px 8px; margin-bottom: 6px; }
+
+      /* ─ CTA / Order ─ */
+      .cta-box {
+        padding: 24px 20px;
+        border-radius: 28px;
+        gap: 20px;
+        grid-template-columns: 1fr;
+      }
+      .cta-box h2 { font-size: 24px; }
+
+      .order-form { padding: 20px; border-radius: 22px; }
+      .order-form h3 { font-size: 16px; margin-bottom: 4px; }
+      .order-template {
+        font-size: 13px;
+        padding: 14px;
+        border-radius: 16px;
+        line-height: 2;
+        margin: 10px 0 14px;
+      }
+      .order-form .btn {
+        width: 100%;
+        padding: 15px;
+        border-radius: 16px;
+        font-size: 15px;
+      }
+      .order-form p { font-size: 12px; margin-top: 10px; }
+
+      /* Footer */
+      footer { padding: 20px 0; font-size: 12px; line-height: 1.7; }
+    }
+
+    /* ── Extra small — 380px ── */
+    @media (max-width: 380px) {
+      .lang-toggle button { padding: 6px 7px; font-size: 10px; }
+      .nav-actions > a.btn { padding: 9px 11px; font-size: 12px; }
+      .brand { font-size: 14px; }
+      h1 { font-size: 30px; }
+      .stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .stat-card strong { font-size: 17px; }
+      .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .food-card img { height: 130px; }
     }
   </style>
 </head>
@@ -467,14 +670,14 @@
       </a>
       <div class="nav-actions">
         <div class="lang-toggle" aria-label="Language selector">
-          <button data-set-lang="ms" onclick="setLang('ms')">Melayu</button>
-          <button data-set-lang="en" onclick="setLang('en')">English</button>
-          <button data-set-lang="ar" onclick="setLang('ar')">عربي</button>
+          <button data-set-lang="ms" onclick="setLang('ms')">MY</button>
+          <button data-set-lang="en" onclick="setLang('en')">EN</button>
+          <button data-set-lang="ar" onclick="setLang('ar')">ع</button>
         </div>
         <a class="btn orange" href="https://wa.me/601153050524?text=Assalamualaikum%20Hind%2C%20saya%20nak%20tanya%20tempahan%20makanan." target="_blank">
-          <span data-lang="ms">WhatsApp Hind</span>
-          <span data-lang="en">WhatsApp Hind</span>
-          <span data-lang="ar">واتساب هند</span>
+          <span data-lang="ms">📲 WhatsApp</span>
+          <span data-lang="en">📲 WhatsApp</span>
+          <span data-lang="ar">📲 واتساب</span>
         </a>
       </div>
     </div>
@@ -513,8 +716,8 @@
         </div>
 
         <div class="stats">
-          <div class="stat-card"><strong>50</strong><span data-lang="ms">pax maksimum</span><span data-lang="en">maximum pax</span><span data-lang="ar">شخص كحد أقصى</span></div>
-          <div class="stat-card"><strong>Fresh</strong><span data-lang="ms">dibuat ikut tempahan</span><span data-lang="en">made to order</span><span data-lang="ar">يُحضّر حسب الطلب</span></div>
+          <div class="stat-card"><strong>50</strong><span data-lang="ms">pax max</span><span data-lang="en">max pax</span><span data-lang="ar">شخص</span></div>
+          <div class="stat-card"><strong>Fresh</strong><span data-lang="ms">ikut tempahan</span><span data-lang="en">made to order</span><span data-lang="ar">حسب الطلب</span></div>
           <div class="stat-card"><strong>011</strong><span>5305 0524</span></div>
         </div>
       </div>
@@ -543,7 +746,7 @@
           <p class="eyebrow">Menu</p>
           <h2>
             <span data-lang="ms">Masakan Arab, roti dan baking dari dapur Hind.</span>
-            <span data-lang="en">Arabic dishes, bread and baking from Hind’s kitchen.</span>
+            <span data-lang="en">Arabic dishes, bread and baking from Hind's kitchen.</span>
             <span data-lang="ar">أكلات عربية، خبز ومخبوزات من مطبخ هند.</span>
           </h2>
         </div>
@@ -675,7 +878,7 @@
             <span data-lang="en">📲 WhatsApp Hind</span>
             <span data-lang="ar">📲 واتساب هند</span>
           </a>
-          <p style="font-size:13px;color:#7c6f65;margin-top:12px">011-5305 0524</p>
+          <p style="font-size:13px;color:#7c6f65;margin-top:12px;text-align:center">011-5305 0524</p>
         </div>
       </div>
     </div>
